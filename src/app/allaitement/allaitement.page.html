@@ -1,0 +1,74 @@
+<ion-header>
+    <ion-toolbar color="secondary">
+        <ion-buttons slot="primary">
+            <ion-button (click)="openModal()">
+                <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Allaitement</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-list inset="false" lines="full">
+        <ion-item-sliding *ngFor="let item of data | orderBy: 'start' : true; let i = index;">
+            <ion-item-options side="start">
+                <ion-item-option class="padding" (click)="delete(item.id)" color="danger">
+                    <ion-icon size="large" name="trash"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+            <ion-item (click)="openModal(item)" [color]="i%2 != 0 ? 'light' : null">
+                <ion-icon slot="start" color="favorite" name="radio-button-off" *ngIf="item.status === 0"></ion-icon>
+                <ion-icon slot="start" color="favorite" name="radio-button-on" *ngIf="item.status === 2"></ion-icon>
+                <ion-grid class="p-0">
+                    <ion-row>
+                        <ion-col class="time">
+                            <ion-label>
+                                <i class="fas fa-hourglass-start"></i>
+                                {{ item.start | date: 'HH:mm' }}
+                            </ion-label>
+                        </ion-col>
+                        <ion-col class="time">
+                            <ion-label>
+                                <span *ngIf="item.end">
+                                    <i class="fas fa-hourglass-end"></i>
+                                    {{ item.end | date: 'HH:mm' }}
+                                </span>
+                                <span *ngIf="!item.end">
+                                    <i class="fas fa-hourglass-end"></i>
+                                    N/A
+                                </span>
+                            </ion-label>
+                        </ion-col>
+                        <ion-col class="date text-muted">
+                            <ion-row>
+                                <ion-col>
+                                    <ion-label>{{ item.start | date: 'dd/MM' }}</ion-label>
+                                </ion-col>
+                            </ion-row>
+                            <ion-row >
+                                <ion-col>
+                                    <ion-label *ngIf="item.end">{{ diff(item.start, item.end) }}</ion-label>
+                                    <ion-label *ngIf="!item.end">N/A</ion-label>
+                                </ion-col>
+                            </ion-row>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+                <ion-chip slot="end">
+                    <img class="mr-1" src="../../assets/icon/tits.png" height="20">
+                    <ion-label>{{ item.bosom }}</ion-label>
+                </ion-chip>
+                <div class="comment" *ngIf="item.comment"></div>
+            </ion-item>
+            <ion-item-options side="end" *ngIf="!item.end">
+                <ion-item-option class="padding" color="favorite" (click)="done(item.id)">
+                    <ion-icon slot="icon-only" name="stopwatch"></ion-icon> Fin
+                </ion-item-option>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+</ion-content>

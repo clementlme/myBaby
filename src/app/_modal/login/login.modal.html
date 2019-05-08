@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-toolbar color="secondary">
+        <ion-title>
+            <ion-icon name="log-in" size="large" slot="secondary"></ion-icon>
+            Qui es-tu ?
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list inset="false" lines="full">
+        <ion-list-header>
+            <ion-label>Ton prénom</ion-label>
+            <span class="mr-3"><i class="far fa-lg fa-user"></i></span>
+        </ion-list-header>
+        <ion-item>
+            <ion-input inputmode="text" min="4" [(ngModel)]="user" required></ion-input>
+        </ion-item>
+        <ion-button expand="block" color="secondary" class="m-3" (click)="submit()" [disabled]="!user || user.length < 4">
+            Continuer
+        </ion-button>
+    </ion-list>
+</ion-content>

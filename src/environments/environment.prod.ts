@@ -1,3 +1,10 @@
+const BASE_URL = 'http://145.239.77.42:3000';
+
 export const environment = {
-  production: true
+    production: false,
+    api: {
+        breastfeeding: BASE_URL + '/api/breastfeeding/',
+        change: BASE_URL + '/api/change/',
+        user: BASE_URL + '/api/user/'
+    }
 };

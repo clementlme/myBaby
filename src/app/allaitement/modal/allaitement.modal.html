@@ -1,0 +1,69 @@
+<ion-header>
+    <ion-toolbar color="secondary">
+        <ion-buttons slot="primary">
+            <ion-button color="" (click)="modalController.dismiss()">
+                <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title *ngIf="!view"><i class="fas fa-utensils"></i> Ajouter un repas</ion-title>
+        <ion-title *ngIf="view"><i class="fas fa-concierge-bell"></i> Récap</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list inset="false" lines="full">
+        <!-- Bossom -->
+        <ion-radio-group [(ngModel)]="bosom">
+            <ion-list-header>
+                <ion-label>Sein <ion-label color="danger">*</ion-label></ion-label>
+                <span class="mr-3"><img src="../../assets/icon/tits.png" height="16"></span>
+            </ion-list-header>
+            <ion-item>
+                <ion-label>Gauche</ion-label>
+                <ion-radio slot="end" value="Gauche" color="secondary"></ion-radio>
+            </ion-item>
+            <ion-item>
+                <ion-label>Droit</ion-label>
+                <ion-radio slot="end" value="Droit" color="secondary"></ion-radio>
+            </ion-item>
+        </ion-radio-group>
+        <!-- Start Date -->
+        <ion-list-header>
+            <ion-label>
+                Heure de début de tété
+                <ion-label color="danger">*</ion-label>
+            </ion-label>
+            <span class="mr-3"><i class="far fa-lg fa-clock"></i></span>
+        </ion-list-header>
+        <ion-item>
+            <ion-label>Date</ion-label>
+            <ion-datetime display-format="HH:mm DD/MM/YY" [(ngModel)]="date"></ion-datetime>
+        </ion-item>
+        <!-- End Date -->
+        <ion-list-header *ngIf="view">
+            <ion-label>Heure de fin de tété</ion-label>
+            <span class="mr-3"><i class="far fa-lg fa-clock"></i></span>
+        </ion-list-header>
+        <ion-item  *ngIf="view">
+            <ion-label>Date</ion-label>
+            <ion-datetime display-format="HH:mm DD/MM/YY" [(ngModel)]="endDate"></ion-datetime>
+        </ion-item>
+        <!-- Comment -->
+        <ion-list-header>
+            <ion-label>Remarque</ion-label>
+            <span class="mr-3"><i class="far fa-lg fa-sticky-note"></i></span>
+        </ion-list-header>
+        <ion-item>
+            <ion-textarea placeholder="Quelque chose à dire ?" rows="3" [(ngModel)]="comment"></ion-textarea>
+        </ion-item>
+        <!-- Button -->
+        <ion-button expand="block" color="secondary" class="validate" (click)="submit('add')" *ngIf="!view">
+            Ajouter
+        </ion-button>
+        <ion-button expand="block" color="secondary" class="validate" (click)="submit('update')" *ngIf="view">
+            Mettre à jour
+        </ion-button>
+
+
+    </ion-list>
+</ion-content>

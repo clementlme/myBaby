@@ -1,5 +1,7 @@
 {
   "name": "iLife",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

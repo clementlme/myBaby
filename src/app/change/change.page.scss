@@ -1,0 +1,19 @@
+ion-list {
+    margin-bottom: 0;
+    ion-grid { padding: 1rem 0; }
+    ion-item-option.padding { padding: 0 .5rem; }
+}
+.change-icon { text-align: center; }
+.icon-disabled { opacity: 0.4; }
+.icon-enabled { opacity: 1; color: rgba(238, 89, 181, .8); }
+.comment {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 25px 25px;
+    border-color: transparent transparent #c8c7cc transparent;
+}
+.range-poop { font-size: 0.75rem; position: absolute; right: 0.5rem; top: 0; }

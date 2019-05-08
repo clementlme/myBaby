@@ -1,0 +1,11 @@
+ion-list {
+    margin-bottom: 0;
+    ion-list-header {
+        background-color: #eee;
+        border-bottom: 1px solid #ccc;
+        ion-label { ion-icon { float: right; } }
+    }
+}
+.validate { margin: 1rem; }
+.icon-disabled { opacity: 0.4; }
+.icon-enabled { opacity: 1; color: rgba(238, 89, 181, .8); }

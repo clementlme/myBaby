@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar color="secondary">
+        <ion-buttons slot="primary">
+            <ion-button (click)="openModal()">
+                <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Change</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-list inset="false" lines="full">
+        <ion-item-sliding *ngFor="let item of data | orderBy: 'date' : true; let i = index;">
+            <ion-item-options side="start">
+                <ion-item-option class="padding" (click)="delete(item.id)" color="danger">
+                    <ion-icon size="large" name="trash"></ion-icon>
+                </ion-item-option>
+            </ion-item-options>
+            <ion-item (click)="openModal(item)" [color]="i%2 != 0 ? 'light' : null">
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <ion-label>
+                                <i class="far fa-clock"></i>
+                                {{ item.date | date: 'HH:mm' }}
+                                <small class="text-muted">{{ item.date | date: 'dd/MM' }}</small>
+                            </ion-label>
+                        </ion-col>
+                        <ion-col size="2" class="change-icon">
+                            <i class="fas fa-lg fa-tint" [ngClass]="{'icon-enabled': item.pee, 'icon-disabled': !item.pee}"></i>
+                        </ion-col>
+                        <ion-col size="2" class="change-icon">
+                            <i class="fas fa-lg fa-poo" [ngClass]="{'icon-enabled': item.poop, 'icon-disabled': !item.poop}"></i>
+                            <ion-badge color="secondary" class="range-poop">{{ item.poopRange }}</ion-badge>
+                        </ion-col>
+                        <ion-col size="2" class="change-icon">
+                            <i class="fas fa-lg fa-shoe-prints" [ngClass]="{'icon-enabled': item.trace, 'icon-disabled': !item.trace}"></i>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+                <div class="comment" *ngIf="item.comment"></div>
+            </ion-item>
+        </ion-item-sliding>
+    </ion-list>
+</ion-content>
